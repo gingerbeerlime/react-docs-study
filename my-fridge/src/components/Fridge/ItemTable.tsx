@@ -1,15 +1,31 @@
-import { Table, TableBody, TableHead, TableHeader, TableRow } from '@/components/ui/table'
-// 목업 데이터 부모에서 state로 관리
-import { FRIDGE_ITEMS } from '@/data/fridgeItems'
+import {
+  Table,
+  TableBody,
+  TableHead,
+  TableHeader,
+  TableRow,
+  TableCell,
+} from '@/components/ui/table'
 import type { Inventory } from '@/types/inventory'
 import ItemRow from './ItemRow'
 
 interface StockTableProps {
   category: Inventory['category']
+  filteredItems: Inventory[]
 }
 
-const ItemTable: React.FC<StockTableProps> = ({ category }) => {
-  const itemList: Inventory[] = FRIDGE_ITEMS.filter((item) => item.category === category)
+const ItemTable: React.FC<StockTableProps> = ({ category, filteredItems }) => {
+  const itemList: Inventory[] = filteredItems.filter((item) => item.category === category)
+
+  const EmptyRow = () => {
+    return (
+      <TableRow>
+        <TableCell colSpan={4} className='text-center'>
+          해당하는 항목이 없습니다
+        </TableCell>
+      </TableRow>
+    )
+  }
 
   return (
     <Table className='table-fixed w-full'>
@@ -21,9 +37,11 @@ const ItemTable: React.FC<StockTableProps> = ({ category }) => {
         </TableRow>
       </TableHeader>
       <TableBody>
-        {itemList.map((item) => (
-          <ItemRow key={item.id} {...item} />
-        ))}
+        {itemList.length > 0 ? (
+          itemList.map((item) => <ItemRow key={item.id} {...item} />)
+        ) : (
+          <EmptyRow />
+        )}
       </TableBody>
     </Table>
   )
