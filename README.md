@@ -5,3 +5,9 @@
 **리액트 개념 훑어보기 & 틱택토 게임 구현**
 - [리액트 개념 훑어보기]https://gingerbeerlime.github.io/categories/react/react-concept/
 - [틱택토 게임]https://gingerbeerlime.github.io/categories/react/tic-tac-toe/
+
+### Week2(2025/03/23)
+
+**리액트로 사고하기 & 설치하기**
+- [리액트로 사고하기]https://gingerbeerlime.github.io/categories/react/thinking-in-react/
+- [설치하기]https://gingerbeerlime.github.io/categories/react/installation/
