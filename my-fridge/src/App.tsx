@@ -4,7 +4,7 @@ import { FRIDGE_ITEMS } from '@/data/fridgeItems'
 import type { Inventory } from '@/types/inventory'
 import { useState } from 'react'
 
-function App() {
+function FilterableStockList() {
   const fridgeItems: Inventory[] = [...FRIDGE_ITEMS]
   const [filterText, setFilterText] = useState<string>('')
   const [inStockOnly, setInStockOnly] = useState<boolean>(false)
@@ -26,4 +26,4 @@ function App() {
   )
 }
 
-export default App
+export default FilterableStockList
