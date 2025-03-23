@@ -15,7 +15,7 @@ const ItemRow: React.FC<ItemRowProps> = ({ name, stock, unit }) => {
         {stock}
         {unit === 'amount' ? '개' : unit}
       </TableCell>
-      <TableCell className='w-2/10 text-center align-middle'>{stock < 3 && '‼'}</TableCell>
+      <TableCell className='w-2/10 text-center align-middle'>{stock < 3 && '❗️'}</TableCell>
     </TableRow>
   )
 }

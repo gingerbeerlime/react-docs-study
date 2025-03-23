@@ -14,18 +14,18 @@ interface StockTableProps {
   filteredItems: Inventory[]
 }
 
+const EmptyRow = () => {
+  return (
+    <TableRow>
+      <TableCell colSpan={4} className='text-center'>
+        해당하는 항목이 없습니다
+      </TableCell>
+    </TableRow>
+  )
+}
+
 const ItemTable: React.FC<StockTableProps> = ({ category, filteredItems }) => {
   const itemList: Inventory[] = filteredItems.filter((item) => item.category === category)
-
-  const EmptyRow = () => {
-    return (
-      <TableRow>
-        <TableCell colSpan={4} className='text-center'>
-          해당하는 항목이 없습니다
-        </TableCell>
-      </TableRow>
-    )
-  }
 
   return (
     <Table className='table-fixed w-full'>

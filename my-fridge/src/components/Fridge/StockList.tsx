@@ -11,9 +11,11 @@ interface StockListProps {
 const StockList: React.FC<StockListProps> = ({ fridgeItems, filterText, inStockOnly }) => {
   let filteredItems: Inventory[] = [...fridgeItems]
   if (filterText !== '') {
-    filteredItems = fridgeItems.filter((item) => item.name.includes(filterText))
+    filteredItems = fridgeItems.filter((item) =>
+      item.name.toLowerCase().includes(filterText.toLowerCase()),
+    )
   }
-  if (!!inStockOnly) {
+  if (inStockOnly) {
     filteredItems = filteredItems.filter((item) => item.stock > 0)
   }
 
@@ -22,10 +24,10 @@ const StockList: React.FC<StockListProps> = ({ fridgeItems, filterText, inStockO
   return (
     <>
       {categories.map((category) => (
-        <>
+        <div key={category}>
           <div className='text-center font-bold mt-3 py-2 bg-neutral-100'>{getLabel(category)}</div>
-          <ItemTable key={category} category={category} filteredItems={filteredItems} />
-        </>
+          <ItemTable category={category} filteredItems={filteredItems} />
+        </div>
       ))}
     </>
   )

@@ -10,8 +10,8 @@ function App() {
   const [inStockOnly, setInStockOnly] = useState<boolean>(false)
 
   return (
-    <div className='flex flex-col items-center justify-center min-h-svh'>
-      <div className='w-100'>
+    <div className='flex flex-col items-center min-h-svh'>
+      <div className='w-100 mt-20'>
         <SearchBar
           filterText={filterText}
           inStockOnly={inStockOnly}
