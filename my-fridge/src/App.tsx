@@ -1,5 +1,5 @@
 import SearchBar from '@/components/SearchBar'
-import StockList from '@/components/Fridge/StockList'
+import StockList from '@/components/StockList'
 import { FRIDGE_ITEMS } from '@/data/fridgeItems'
 import type { Inventory } from '@/types/inventory'
 import { useState } from 'react'
@@ -11,7 +11,7 @@ function FilterableStockList() {
 
   return (
     <div className='flex flex-col items-center min-h-svh'>
-      <div className='w-100 mt-20'>
+      <div className='w-100 mt-15'>
         <SearchBar
           filterText={filterText}
           inStockOnly={inStockOnly}
