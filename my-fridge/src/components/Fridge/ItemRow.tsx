@@ -1,16 +1,10 @@
 import { TableCell, TableRow } from '@/components/ui/table'
-import { Input } from '@/components/ui/input'
-import { Pen, CircleCheckBig } from 'lucide-react'
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select'
 import type { Inventory } from '@/types/inventory'
 import { useState, useEffect } from 'react'
+import StockCountEditForm from './StockCountEditForm'
+import StockCountReadForm from './StockCountReadForm'
+import SaveButton from '@/components/common/SaveButton'
+import EditButton from '@/components/common/EditButton'
 
 interface ItemRowProps {
   id: number
@@ -20,59 +14,6 @@ interface ItemRowProps {
   editMode: boolean
   onEditClick: (id: number) => void
   onSaveClick: (updatedItem: { id: number; stock: number; unit: Inventory['unit'] }) => void
-}
-
-interface StockCountProps {
-  stock: number
-  unit: Inventory['unit']
-}
-
-interface StockCountEditFormProps {
-  stock: number
-  unit: Inventory['unit']
-  onStockCountChanged: (value: number) => void
-  onStockUnitChanged: (value: Inventory['unit']) => void
-}
-
-// 파일 분리하기
-const StockCount: React.FC<StockCountProps> = ({ stock, unit }) => {
-  return (
-    <>
-      {stock}
-      {unit === 'amount' ? '개' : unit}
-    </>
-  )
-}
-
-const StockCountEditForm: React.FC<StockCountEditFormProps> = ({
-  stock,
-  unit,
-  onStockCountChanged,
-  onStockUnitChanged,
-}) => {
-  return (
-    <div className='flex'>
-      <Input
-        type='text'
-        placeholder='재고를 입력하세요'
-        value={stock}
-        className='mr-1'
-        onChange={(e) => onStockCountChanged(Number(e.target.value))}
-      />
-      <Select value={unit} onValueChange={onStockUnitChanged}>
-        <SelectTrigger className='w-[80px]'>
-          <SelectValue placeholder='단위' />
-        </SelectTrigger>
-        <SelectContent>
-          <SelectGroup>
-            <SelectItem value='amount'>개</SelectItem>
-            <SelectItem value='kg'>kg</SelectItem>
-            <SelectItem value='g'>g</SelectItem>
-          </SelectGroup>
-        </SelectContent>
-      </Select>
-    </div>
-  )
 }
 
 const ItemRow: React.FC<ItemRowProps> = ({
@@ -98,6 +39,10 @@ const ItemRow: React.FC<ItemRowProps> = ({
     onSaveClick({ id, stock: stockCount, unit: stockUnit })
   }
 
+  const handleClickEdit = () => {
+    onEditClick(id)
+  }
+
   return (
     <TableRow>
       <TableCell className='w-3/10'>{name}</TableCell>
@@ -110,20 +55,15 @@ const ItemRow: React.FC<ItemRowProps> = ({
             onStockUnitChanged={setStockUnit}
           />
         ) : (
-          <StockCount stock={stock} unit={unit} />
+          <StockCountReadForm stock={stock} unit={unit} />
         )}
       </TableCell>
       <TableCell className='w-2/10 text-center align-middle'>{stock < 3 && '❗️'}</TableCell>
       <TableCell className='w-1/10'>
         {editMode ? (
-          <CircleCheckBig
-            size={14}
-            color='#3e9392'
-            className='cursor-pointer'
-            onClick={handleClickSave}
-          />
+          <SaveButton size={14} color='#3e9392' onSaveClick={handleClickSave} />
         ) : (
-          <Pen size={14} className='cursor-pointer' onClick={() => onEditClick(id)} />
+          <EditButton size={14} color='#000000' onEditClick={handleClickEdit} />
         )}
       </TableCell>
     </TableRow>
