@@ -6,4 +6,6 @@ interface Inventory {
   name: string
 }
 
-export type { Inventory }
+interface UpdatedStockParams extends Pick<Inventory, 'id' | 'stock' | 'unit'> {}
+
+export type { Inventory, UpdatedStockParams }

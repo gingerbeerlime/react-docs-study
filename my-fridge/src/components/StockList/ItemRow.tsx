@@ -1,10 +1,11 @@
 import { TableCell, TableRow } from '@/components/ui/table'
-import type { Inventory } from '@/types/inventory'
+import type { Inventory, UpdatedStockParams } from '@/types/inventory'
 import { useState, useEffect } from 'react'
 import StockCountEditForm from './StockCountEditForm'
 import StockCountReadForm from './StockCountReadForm'
 import SaveButton from '@/components/common/SaveButton'
 import EditButton from '@/components/common/EditButton'
+import CancelButton from '@/components/common/CancelButton'
 
 interface ItemRowProps {
   id: number
@@ -13,7 +14,8 @@ interface ItemRowProps {
   unit: Inventory['unit']
   editMode: boolean
   onEditClick: (id: number) => void
-  onSaveClick: (updatedItem: { id: number; stock: number; unit: Inventory['unit'] }) => void
+  onSaveClick: ({ id, stock, unit }: UpdatedStockParams) => void
+  onCancelClick: () => void
 }
 
 const ItemRow: React.FC<ItemRowProps> = ({
@@ -24,6 +26,7 @@ const ItemRow: React.FC<ItemRowProps> = ({
   editMode,
   onEditClick,
   onSaveClick,
+  onCancelClick,
 }) => {
   const [stockCount, setStockCount] = useState(0)
   const [stockUnit, setStockUnit] = useState<Inventory['unit']>('amount')
@@ -31,12 +34,11 @@ const ItemRow: React.FC<ItemRowProps> = ({
   useEffect(() => {
     setStockCount(stock)
     setStockUnit(unit)
-    // + 취소될 때 원래 값으로 돌리기
-    // 의존성 배열에 editMode 넣어야하나,,
   }, [editMode, stock, unit])
 
   const handleClickSave = () => {
     onSaveClick({ id, stock: stockCount, unit: stockUnit })
+    onCancelClick()
   }
 
   const handleClickEdit = () => {
@@ -45,7 +47,7 @@ const ItemRow: React.FC<ItemRowProps> = ({
 
   return (
     <TableRow>
-      <TableCell className='w-3/10'>{name}</TableCell>
+      <TableCell className='w-2/10'>{name}</TableCell>
       <TableCell className='w-4/10'>
         {editMode ? (
           <StockCountEditForm
@@ -59,11 +61,17 @@ const ItemRow: React.FC<ItemRowProps> = ({
         )}
       </TableCell>
       <TableCell className='w-2/10 text-center align-middle'>{stock < 3 && '❗️'}</TableCell>
-      <TableCell className='w-1/10'>
+      <TableCell className='w-2/10'>
         {editMode ? (
-          <SaveButton size={14} color='#3e9392' onSaveClick={handleClickSave} />
+          <div className='flex justify-end pr-1'>
+            <CancelButton size={18} color='#db0404' onCancelClick={onCancelClick} />
+            <span className='px-1' />
+            <SaveButton size={18} color='#3e9392' onSaveClick={handleClickSave} />
+          </div>
         ) : (
-          <EditButton size={14} color='#000000' onEditClick={handleClickEdit} />
+          <div className='flex justify-end pr-1'>
+            <EditButton size={14} color='#000000' onEditClick={handleClickEdit} />
+          </div>
         )}
       </TableCell>
     </TableRow>
