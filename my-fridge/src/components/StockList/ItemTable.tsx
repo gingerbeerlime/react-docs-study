@@ -1,7 +1,7 @@
 import { Table, TableBody, TableHead, TableHeader, TableRow } from '@/components/ui/table'
 import type { Inventory, UpdatedStockParams } from '@/types/inventory'
 import ItemRow from './ItemRow'
-import EmptyRow from './EmptyRow'
+import EmptyTableRow from '@/components/common/EmptyTableRow'
 import { useState } from 'react'
 
 interface StockTableProps {
@@ -38,7 +38,7 @@ const ItemTable: React.FC<StockTableProps> = ({ category, filteredItems, onUpdat
             />
           ))
         ) : (
-          <EmptyRow />
+          <EmptyTableRow colSpan={4} />
         )}
       </TableBody>
     </Table>
