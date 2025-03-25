@@ -1,5 +1,5 @@
-import SearchBar from '@/components/SearchBar'
-import StockList from '@/components/StockList'
+import SearchBar from '@/components/stock-list/SearchBar'
+import StockList from '@/components/stock-list/filtered-view'
 import { FRIDGE_ITEMS } from '@/data/fridgeItems'
 import type { Inventory } from '@/types/inventory'
 import { useState } from 'react'

@@ -1,14 +1,14 @@
 import type { Inventory } from '@/types/inventory'
 
 interface StockCountProps {
-  stock: number
+  quantity: number
   unit: Inventory['unit']
 }
 
-const StockCount: React.FC<StockCountProps> = ({ stock, unit }) => {
+const StockCount: React.FC<StockCountProps> = ({ quantity, unit }) => {
   return (
     <>
-      {stock}
+      {quantity}
       {unit === 'amount' ? '개' : unit}
     </>
   )

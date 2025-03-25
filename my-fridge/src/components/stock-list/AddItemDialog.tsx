@@ -12,18 +12,18 @@ const selectCategoryOptions = [...new Set(FRIDGE_ITEMS.map((item) => item.catego
 const selectUnitOptions = [...new Set(FRIDGE_ITEMS.map((item) => item.unit))]
 
 interface DialogParams {
-  onSave: ({ category, unit, stock, name }: UpdatedInventoryParams) => void
+  onSave: ({ category, unit, quantity, name }: UpdatedInventoryParams) => void
 }
 
 const AddItemDialog: React.FC<DialogParams> = ({ onSave }) => {
   const [item, setItem] = useState<UpdatedInventoryParams>({
     category: 'Vegetables',
     unit: 'amount',
-    stock: 0,
+    quantity: 0,
     name: '',
   })
 
-  const { category, unit, stock, name } = item
+  const { category, unit, quantity, name } = item
 
   const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const nextItem = {
@@ -84,13 +84,13 @@ const AddItemDialog: React.FC<DialogParams> = ({ onSave }) => {
         </div>
       </div>
       <div className='grid grid-cols-4 items-center gap-4'>
-        <Label htmlFor='stock' className='text-right'>
+        <Label htmlFor='quantity' className='text-right'>
           재고
         </Label>
         <Input
-          id='stock'
-          name='stock'
-          value={stock}
+          id='quantity'
+          name='quantity'
+          value={quantity}
           className='col-span-2'
           onChange={onInputChange}
         />

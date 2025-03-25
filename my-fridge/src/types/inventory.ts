@@ -1,13 +1,14 @@
 interface Inventory {
   id: number
-  category: 'Drinks' | 'Vegetables' | 'Protein'
-  unit: 'amount' | 'kg' | 'g'
-  stock: number
   name: string
+  quantity: number
+  unit: 'amount' | 'kg' | 'g'
+  category: 'Drinks' | 'Vegetables' | 'Protein'
 }
 
-interface UpdatedStockParams extends Pick<Inventory, 'id' | 'stock' | 'unit'> {}
+interface UpdatedStockParams extends Pick<Inventory, 'id' | 'quantity' | 'unit'> {}
 
-interface UpdatedInventoryParams extends Pick<Inventory, 'category' | 'unit' | 'stock' | 'name'> {}
+interface UpdatedInventoryParams
+  extends Pick<Inventory, 'name' | 'quantity' | 'unit' | 'category'> {}
 
 export type { Inventory, UpdatedStockParams, UpdatedInventoryParams }

@@ -10,34 +10,34 @@ import CancelButton from '@/components/common/CancelButton'
 interface ItemRowProps {
   id: number
   name: string
-  stock: number
+  quantity: number
   unit: Inventory['unit']
   editMode: boolean
   onEditClick: (id: number) => void
-  onSaveClick: ({ id, stock, unit }: UpdatedStockParams) => void
+  onSaveClick: ({ id, quantity, unit }: UpdatedStockParams) => void
   onCancelClick: () => void
 }
 
 const ItemRow: React.FC<ItemRowProps> = ({
   id,
   name,
-  stock,
+  quantity,
   unit,
   editMode,
   onEditClick,
   onSaveClick,
   onCancelClick,
 }) => {
-  const [stockCount, setStockCount] = useState(0)
+  const [stockQuantity, setStockQuantity] = useState(0)
   const [stockUnit, setStockUnit] = useState<Inventory['unit']>('amount')
 
   useEffect(() => {
-    setStockCount(stock)
+    setStockQuantity(quantity)
     setStockUnit(unit)
-  }, [editMode, stock, unit])
+  }, [editMode, quantity, unit])
 
   const handleClickSave = () => {
-    onSaveClick({ id, stock: stockCount, unit: stockUnit })
+    onSaveClick({ id, quantity: stockQuantity, unit: stockUnit })
     onCancelClick()
   }
 
@@ -51,16 +51,16 @@ const ItemRow: React.FC<ItemRowProps> = ({
       <TableCell className='w-4/10'>
         {editMode ? (
           <StockCountEditForm
-            stock={stockCount}
+            quantity={stockQuantity}
             unit={stockUnit}
-            onStockCountChanged={setStockCount}
+            onStockCountChanged={setStockQuantity}
             onStockUnitChanged={setStockUnit}
           />
         ) : (
-          <StockCountReadForm stock={stock} unit={unit} />
+          <StockCountReadForm quantity={quantity} unit={unit} />
         )}
       </TableCell>
-      <TableCell className='w-2/10 text-center align-middle'>{stock < 3 && '❗️'}</TableCell>
+      <TableCell className='w-2/10 text-center align-middle'>{quantity < 3 && '❗️'}</TableCell>
       <TableCell className='w-2/10'>
         {editMode ? (
           <div className='flex justify-end pr-1'>

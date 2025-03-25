@@ -2,7 +2,7 @@ import type { Inventory, UpdatedStockParams, UpdatedInventoryParams } from '@/ty
 import { getLabel_Emoji } from '@/utils/getLabel'
 import ItemTable from './ItemTable'
 import { useState } from 'react'
-import AddItemDialog from './AddItemDialog'
+import AddItemDialog from '@/components/stock-list/AddItemDialog'
 
 interface StockListProps {
   fridgeItems: Inventory[]
@@ -10,17 +10,17 @@ interface StockListProps {
   inStockOnly: boolean
 }
 
-const StockList: React.FC<StockListProps> = ({ fridgeItems, filterText, inStockOnly }) => {
+const FilteredView: React.FC<StockListProps> = ({ fridgeItems, filterText, inStockOnly }) => {
   const [stockList, setStockList] = useState([...fridgeItems])
   const [nextId, setNextId] = useState(Math.max(...fridgeItems.map((item) => Number(item.id))) + 1)
 
-  const handleUpdateStockCount = ({ id, stock, unit }: UpdatedStockParams) => {
+  const handleUpdateStock = ({ id, quantity, unit }: UpdatedStockParams) => {
     setStockList((prevList) => {
       const nextList = prevList.map((item) => {
         if (item.id === id) {
           return {
             ...item,
-            stock: stock,
+            quantity: quantity,
             unit: unit,
           }
         } else {
@@ -31,12 +31,12 @@ const StockList: React.FC<StockListProps> = ({ fridgeItems, filterText, inStockO
     })
   }
 
-  const handleRegisterItem = ({ category, stock, unit, name }: UpdatedInventoryParams) => {
+  const handleRegisterItem = ({ category, quantity, unit, name }: UpdatedInventoryParams) => {
     setStockList((prevList) => {
       const nextItem = {
         id: nextId,
         category: category,
-        stock: stock,
+        quantity: quantity,
         unit: unit,
         name: name,
       }
@@ -52,7 +52,7 @@ const StockList: React.FC<StockListProps> = ({ fridgeItems, filterText, inStockO
     )
   }
   if (inStockOnly) {
-    filteredItems = filteredItems.filter((item) => item.stock > 0)
+    filteredItems = filteredItems.filter((item) => item.quantity > 0)
   }
 
   const categories: Inventory['category'][] = [...new Set(fridgeItems.map((item) => item.category))]
@@ -67,7 +67,7 @@ const StockList: React.FC<StockListProps> = ({ fridgeItems, filterText, inStockO
           <ItemTable
             category={category}
             filteredItems={filteredItems}
-            onUpdateStockCount={handleUpdateStockCount}
+            onUpdateStock={handleUpdateStock}
           />
         </div>
       ))}
@@ -76,4 +76,4 @@ const StockList: React.FC<StockListProps> = ({ fridgeItems, filterText, inStockO
   )
 }
 
-export default StockList
+export default FilteredView

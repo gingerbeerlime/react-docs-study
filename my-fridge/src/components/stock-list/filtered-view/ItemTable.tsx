@@ -7,10 +7,10 @@ import { useState } from 'react'
 interface StockTableProps {
   category: Inventory['category']
   filteredItems: Inventory[]
-  onUpdateStockCount: ({ id, stock, unit }: UpdatedStockParams) => void
+  onUpdateStock: ({ id, quantity, unit }: UpdatedStockParams) => void
 }
 
-const ItemTable: React.FC<StockTableProps> = ({ category, filteredItems, onUpdateStockCount }) => {
+const ItemTable: React.FC<StockTableProps> = ({ category, filteredItems, onUpdateStock }) => {
   const itemList: Inventory[] = filteredItems.filter((item) => item.category === category)
 
   const [editItem, setEditItem] = useState<number | null>(null)
@@ -33,7 +33,7 @@ const ItemTable: React.FC<StockTableProps> = ({ category, filteredItems, onUpdat
               {...item}
               editMode={editItem === item.id}
               onEditClick={setEditItem}
-              onSaveClick={onUpdateStockCount}
+              onSaveClick={onUpdateStock}
               onCancelClick={() => setEditItem(null)}
             />
           ))

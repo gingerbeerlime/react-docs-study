@@ -10,14 +10,14 @@ import { Input } from '@/components/ui/input'
 import type { Inventory } from '@/types/inventory'
 
 interface StockCountEditFormProps {
-  stock: number
+  quantity: number
   unit: Inventory['unit']
   onStockCountChanged: (value: number) => void
   onStockUnitChanged: (value: Inventory['unit']) => void
 }
 
 const StockCountEditForm: React.FC<StockCountEditFormProps> = ({
-  stock,
+  quantity,
   unit,
   onStockCountChanged,
   onStockUnitChanged,
@@ -27,7 +27,7 @@ const StockCountEditForm: React.FC<StockCountEditFormProps> = ({
       <Input
         type='text'
         placeholder='재고를 입력하세요'
-        value={stock}
+        value={quantity}
         className='mr-1'
         onChange={(e) => onStockCountChanged(Number(e.target.value))}
       />
