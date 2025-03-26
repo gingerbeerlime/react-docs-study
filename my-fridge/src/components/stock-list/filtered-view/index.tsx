@@ -1,7 +1,7 @@
 import type { Inventory, UpdatedStockParams, UpdatedInventoryParams } from '@/types/inventory'
 import { getLabel_Emoji } from '@/utils/getLabel'
 import ItemTable from './ItemTable'
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import AddItemDialog from '@/components/stock-list/AddItemDialog'
 
 interface StockListProps {
@@ -12,7 +12,7 @@ interface StockListProps {
 
 const FilteredView: React.FC<StockListProps> = ({ fridgeItems, filterText, inStockOnly }) => {
   const [stockList, setStockList] = useState([...fridgeItems])
-  const [nextId, setNextId] = useState(Math.max(...fridgeItems.map((item) => Number(item.id))) + 1)
+  const nextId = useRef(Math.max(...fridgeItems.map((item) => Number(item.id))) + 1)
 
   const handleUpdateStock = ({ id, quantity, unit }: UpdatedStockParams) => {
     setStockList((prevList) => {
@@ -34,7 +34,7 @@ const FilteredView: React.FC<StockListProps> = ({ fridgeItems, filterText, inSto
   const handleRegisterItem = ({ category, quantity, unit, name }: UpdatedInventoryParams) => {
     setStockList((prevList) => {
       const nextItem = {
-        id: nextId,
+        id: nextId.current,
         category: category,
         quantity: quantity,
         unit: unit,
@@ -42,7 +42,7 @@ const FilteredView: React.FC<StockListProps> = ({ fridgeItems, filterText, inSto
       }
       return [...prevList, nextItem]
     })
-    setNextId(nextId + 1)
+    nextId.current++
   }
 
   let filteredItems: Inventory[] = [...stockList]
