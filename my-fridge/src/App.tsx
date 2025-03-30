@@ -10,8 +10,8 @@ function FilterableStockList() {
   const [inStockOnly, setInStockOnly] = useState<boolean>(false)
 
   return (
-    <div className='flex flex-col items-center min-h-svh'>
-      <div className='w-100 mt-15'>
+    <div className='max-w-md min-w-sm min-h-svh mx-auto pt-12'>
+      <div className='w-full flex flex-col bg-white'>
         <SearchBar
           filterText={filterText}
           inStockOnly={inStockOnly}
