@@ -11,3 +11,8 @@
 **리액트로 사고하기 & 설치하기**
 - [리액트로 사고하기]https://gingerbeerlime.github.io/categories/react/thinking-in-react/
 - [설치하기]https://gingerbeerlime.github.io/categories/react/installation/
+
+### Week3(2025/03/30)
+
+**리액트 설정하기**
+- [설정하기]https://gingerbeerlime.github.io/categories/react/setup/
