@@ -1,4 +1,4 @@
-import { getImageUrl } from '../util/getImageUrl.ts'
+import { getImageUrl } from '../../util/getImageUrl.ts'
 
 interface Person {
   name: string

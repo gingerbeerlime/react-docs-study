@@ -1,5 +1,5 @@
-import { getImageUrl } from '../util/getImageUrl'
-import { people } from '../data/scientists'
+import { getImageUrl } from '../../util/getImageUrl'
+import { people } from '../../data/scientists'
 
 interface Person {
   id: number
