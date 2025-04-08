@@ -1,10 +1,11 @@
 interface Person {
-  imgId: string
+  id: number
+  name: string
+  profession: string
+  accomplishment: string
+  imageId: string
 }
 
-export function getImageUrl(
-  person: Person,
-  size: 's' | 'm' | 'l' = 's',
-): string {
-  return 'https://i.imgur.com/' + person.imgId + size + '.jpg'
+export function getImageUrl(person: Person) {
+  return 'https://i.imgur.com/' + person.imageId + 's.jpg'
 }
