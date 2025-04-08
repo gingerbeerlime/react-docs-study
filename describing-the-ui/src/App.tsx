@@ -2,10 +2,10 @@
 // import Gallery from './components/Gallery'
 // name export로 선언된 컴포넌트 import 해오는 법
 // import { Profile } from './components/Profile'
-import Poem from './components/Poem'
+import ProfileList from './components/keeping-components-pure/ProfileList'
 
 const App = () => {
-  return <Poem />
+  return <ProfileList />
 }
 
 export default App
