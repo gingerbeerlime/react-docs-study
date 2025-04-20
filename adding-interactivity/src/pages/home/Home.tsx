@@ -1,5 +1,16 @@
+import { Link } from 'react-router-dom'
+
 const Home = () => {
-  return <div>Home</div>
+  return (
+    <div>
+      <Link to='/responding-to-events'>
+        <button>이벤트에 응답하기</button>
+      </Link>
+      <Link to='/state-a-components-memory'>
+        <button>State: 컴포넌트의 기억 저장소</button>
+      </Link>
+    </div>
+  )
 }
 
 export default Home
