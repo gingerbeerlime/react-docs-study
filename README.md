@@ -26,3 +26,9 @@
 
 **UI 표현하기(2)**
 - [리액트 UI 표현하기]https://github.com/gingerbeerlime/react-docs-study/blob/main/describing-the-ui#조건부-렌더링
+
+### Week6(2025/04/20)
+
+**상호작용 더하기(1)**
+- [상호작용 더하기]https://ko.react.dev/learn/adding-interactivity
+
