@@ -4,7 +4,7 @@
 - State: 컴포넌트의 기억 저장소
 - 렌더링 그리고 커밋
 
-[리액트v19 공식문서-UI 표현하기] <https://ko.react.dev/learn/adding-interactivity>
+[리액트v19 공식문서-상호작용 더하기] <https://ko.react.dev/learn/adding-interactivity>
 
 ---
 
