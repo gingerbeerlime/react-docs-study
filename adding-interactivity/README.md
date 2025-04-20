@@ -321,7 +321,7 @@ export default function FeedbackForm() {
 }
 ```
 
-- `주의` 컴포넌트가 다시 렌더링 될 때 정보를 유지하기 위해 `state` 변수가 필요한 것임을 잊지않기
+- `주의` 컴포넌트가 다시 렌더링 될 때 정보를 유지하기 위해 `state` 변수가 필요한 것임을 잊지않기<br/>
   ⇒ 일반 변수로도 잘 작동할 때 state 변수를 사용하지 않도록 한다.
 
 ---
@@ -341,8 +341,6 @@ export default function FeedbackForm() {
 1. 컴포넌트의 **초기 렌더링인 경우**
 2. 컴포넌트의 **state가 업데이트된 경우**
 
-<br/>
-
 #### (1) 초기 렌더링
 
 - `createRoot`호출 후 `render` 메서드 호출
@@ -354,8 +352,6 @@ import { createRoot } from 'react-dom/client'
 const root = createRoot(document.getElementById('root'))
 root.render(<Image />)
 ```
-
-<br/>
 
 #### (2) state 업데이트 시 리렌더링
 
