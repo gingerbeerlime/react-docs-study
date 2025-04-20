@@ -30,5 +30,5 @@
 ### Week6(2025/04/20)
 
 **상호작용 더하기(1)**
-- [상호작용 더하기]https://ko.react.dev/learn/adding-interactivity
+- [상호작용 더하기]https://github.com/gingerbeerlime/react-docs-study/tree/main/adding-interactivity
 
