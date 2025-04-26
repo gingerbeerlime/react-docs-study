@@ -4,6 +4,8 @@ import NotFound from '../pages/NotFound'
 import Home from '../pages/home/Home'
 import RespondingToEvents from '../pages/responding-to-events'
 import StateAComponentsMemory from '../pages/state-a-components-memory'
+import StateAsSnapShot from '../pages/state-as-a-snapshot'
+import StateUpdateQueue from '../pages/queueing-a-series-of-stat-updates'
 
 export const router = createBrowserRouter([
   {
@@ -22,6 +24,14 @@ export const router = createBrowserRouter([
       {
         path: '/state-a-components-memory',
         element: <StateAComponentsMemory />,
+      },
+      {
+        path: '/state-as-a-snapshot',
+        element: <StateAsSnapShot />,
+      },
+      {
+        path: '/queueing-a-series-of-state-updates',
+        element: <StateUpdateQueue />,
       },
     ],
   },

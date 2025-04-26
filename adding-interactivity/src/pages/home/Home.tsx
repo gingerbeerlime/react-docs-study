@@ -9,6 +9,12 @@ const Home = () => {
       <Link to='/state-a-components-memory'>
         <button>State: 컴포넌트의 기억 저장소</button>
       </Link>
+      <Link to='/state-as-a-snapshot'>
+        <button>스냅샷으로서의 State</button>
+      </Link>
+      <Link to='/queueing-a-series-of-state-updates'>
+        <button>스냅샷으로서의 State</button>
+      </Link>
     </div>
   )
 }
