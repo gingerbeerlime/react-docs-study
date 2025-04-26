@@ -9,11 +9,11 @@ export default function Counter() {
       <button
         onClick={() => {
           setNumber((n) => n + 1)
-          setNumber((n) => n + 1)
+          setNumber(number + 5)
           setNumber((n) => n + 1)
         }}
       >
-        +3
+        +6
       </button>
     </>
   )

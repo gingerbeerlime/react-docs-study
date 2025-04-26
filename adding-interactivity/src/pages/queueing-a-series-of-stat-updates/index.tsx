@@ -1,4 +1,6 @@
 import styled from 'styled-components'
+import Counter from './Counter'
+import RequestTracker from './RequestTracker'
 
 const StyleBlock = styled.div`
   display: grid;
@@ -6,7 +8,12 @@ const StyleBlock = styled.div`
 `
 
 const StateUpdateQueue = () => {
-  return <StyleBlock></StyleBlock>
+  return (
+    <StyleBlock>
+      <Counter />
+      <RequestTracker />
+    </StyleBlock>
+  )
 }
 
 export default StateUpdateQueue

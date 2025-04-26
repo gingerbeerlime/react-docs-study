@@ -13,7 +13,7 @@ const Home = () => {
         <button>스냅샷으로서의 State</button>
       </Link>
       <Link to='/queueing-a-series-of-state-updates'>
-        <button>스냅샷으로서의 State</button>
+        <button>State 업데이트 큐</button>
       </Link>
     </div>
   )
