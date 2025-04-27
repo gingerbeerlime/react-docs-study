@@ -625,7 +625,7 @@ setEnabled((preEnabled) => !preEnabled)
 
 - 자바스크립트에서 `string`, `number`, `boolean`과 같은 원시값들은 변경할 수 없다.
   - ex. `x` state가 `0`에서 `5`로 바뀌더라도 숫자 `0` 자체는 바뀌지않음을 의미한다.
-- 다만 객체는 객체 자체의 내용을 바꿀 수 있고 이를 **변경(`mutation`)**이라고 한다.
+- 다만 객체는 객체 자체의 내용을 바꿀 수 있고 이를 변경(`mutation`)이라고 한다.
   ```jsx
   const [position, setPosition] = useState({ x: 0, y: 0 })
   ```
