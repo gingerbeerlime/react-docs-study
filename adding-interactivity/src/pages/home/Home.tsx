@@ -15,6 +15,12 @@ const Home = () => {
       <Link to='/queueing-a-series-of-state-updates'>
         <button>State 업데이트 큐</button>
       </Link>
+      <Link to='/updating-objects-in-state'>
+        <button>객체 State 업데이트하기</button>
+      </Link>
+      <Link to='/updating-array-in-state'>
+        <button>배열 State 업데이트하기</button>
+      </Link>
     </div>
   )
 }

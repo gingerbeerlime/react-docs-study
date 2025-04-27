@@ -3,6 +3,10 @@
 - 이벤트에 응답하기
 - State: 컴포넌트의 기억 저장소
 - 렌더링 그리고 커밋
+- 스냅샷으로서의 State
+- State 업데이트 큐
+- 객체 State 업데이트하기
+- 배열 State 업데이트하기
 
 [리액트v19 공식문서-상호작용 더하기] <https://ko.react.dev/learn/adding-interactivity>
 
