@@ -32,3 +32,8 @@
 **상호작용 더하기(1)**
 - [상호작용 더하기]https://github.com/gingerbeerlime/react-docs-study/tree/main/adding-interactivity
 
+### Week7(2025/04/27)
+
+**상호작용 더하기(2)**
+- [상호작용 더하기]https://github.com/gingerbeerlime/react-docs-study/tree/main/adding-interactivity#스냅샷으로서의-State
+
