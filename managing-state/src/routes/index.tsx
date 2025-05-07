@@ -2,6 +2,7 @@ import { createBrowserRouter } from 'react-router-dom'
 import NotFound from '../pages/NotFound'
 import Home from '../pages/Home'
 import ReactingToInputWithState from '@/pages/ReactingToInputWithState'
+import ChoosingTheStateStructure from '@/pages/ChoosingTheStateStructure'
 
 export const router = createBrowserRouter([
   {
@@ -17,5 +18,9 @@ export const router = createBrowserRouter([
   {
     path: '/reacting-to-input-with-state',
     element: <ReactingToInputWithState />,
+  },
+  {
+    path: '/choosing-the-state-structure',
+    element: <ChoosingTheStateStructure />,
   },
 ])
