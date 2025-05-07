@@ -3,3 +3,9 @@ export interface LetterType {
   subject: string
   isStarred: boolean
 }
+
+export interface FoodType {
+  id: number
+  name: string
+  description: string
+}

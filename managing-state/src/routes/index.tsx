@@ -3,6 +3,7 @@ import NotFound from '../pages/NotFound'
 import Home from '../pages/Home'
 import ReactingToInputWithState from '@/pages/ReactingToInputWithState'
 import ChoosingTheStateStructure from '@/pages/ChoosingTheStateStructure'
+import SharingStateBetweenComponents from '@/pages/SharingStateBetweenComponents'
 
 export const router = createBrowserRouter([
   {
@@ -22,5 +23,9 @@ export const router = createBrowserRouter([
   {
     path: '/choosing-the-state-structure',
     element: <ChoosingTheStateStructure />,
+  },
+  {
+    path: '/sharing-state-between-components',
+    element: <SharingStateBetweenComponents />,
   },
 ])

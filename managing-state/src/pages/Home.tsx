@@ -11,6 +11,9 @@ const Home = () => {
       <Link to='/choosing-the-state-structure'>
         <Button>State 구조 선택하기</Button>
       </Link>
+      <Link to='/sharing-state-between-components'>
+        <Button>컴포넌트 간 State 공유하기</Button>
+      </Link>
     </div>
   )
 }
