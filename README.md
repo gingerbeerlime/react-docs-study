@@ -37,3 +37,8 @@
 **상호작용 더하기(2)**
 - [상호작용 더하기]https://github.com/gingerbeerlime/react-docs-study/tree/main/adding-interactivity#스냅샷으로서의-State
 
+### Week8(2025/05/11)
+
+**State 관리하기(1)**
+- [State 관리하기]https://github.com/gingerbeerlime/react-docs-study/tree/main/managing-state
+
