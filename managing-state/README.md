@@ -58,6 +58,8 @@ export default function Form({
 }
 ```
 
+<br/>
+
 #### (2) 무엇이 State 변화를 트리거하는지 알아내기
 
 - 휴먼 인풋
@@ -66,6 +68,8 @@ export default function Form({
 - 컴퓨터 인풋
   - 네트워크 응답 성공 ⇒ `submitting` → `success`
   - 네트워크 요청 실패 ⇒ `submitting` → `error`
+
+<br/>
 
 #### (3) 메모리의 state를 `useState`로 표현하기
 
@@ -82,10 +86,12 @@ const [isError, setIsError] = useState(false)
 
 - 어떤 것을 `state`로 설정해야할지 어렵다면, 필요한 `state` 목록을 모두 작성한 후 `4번`을 통해 불필요한 `state` 변수를 삭제해 나가는 방향으로 작성
 
+<br/>
+
 #### ✨(4) 불필요한 `state` 변수 제거하기
 
 - **`state`가 역설을 일으키지는 않는지?**
-  - `isEmpty`, `isTyping`, `isSubmitting`, `isSuccess` 는 동시에 `true`일 수가 없음 ⇒ 하나의 state로 관리하는 것이 효율적
+  - `isEmpty`, `isTyping`, `isSubmitting`, `isSuccess` 는 동시에 `true`일 수가 없음 ⇒ **하나의 state로 관리**하는 것이 효율적
 - **다른 `state` 변수에 이미 같은 정보가 포함되어있지 않은지?**
   - `isEmpty` 같은 경우는 `input`의 `length`로 체크할 수 있음
 - **다른 변수를 뒤집었을 때 같은 정보를 얻을 수 있지 않은지?**
@@ -115,15 +121,19 @@ const [status, setStatus] = useState('typing') // 'typing', 'submitting', or 'su
 4. State 중복 피하기 : 동일 데이터가 중복될 경우 동기화 유지가 어려우니 최대한 중복 피하기
 5. 깊게 중첩된 state 피하기 : 가능한 한 state를 평탄한 방식으로 구성
 
+<br/>
+
 #### (1) 연관된 state 그룹화하기
 
-- 두 개의 `state` 변수가 항상 함께 변경된다면, 단일 `state` 변수로 통합하는 것이 좋다.
+- 두 개의 `state` 변수가 항상 함께 변경된다면, 단일 `state` 변수로 통합하는 것이 좋다
 
 ```jsx
 const [position, setPosition] = useState({ x: 0, y: 0 })
 ```
 
 ⇒ 마우스 커서를 움직이면 `x, y` 두 좌표가 모두 업데이트 됨 → 하나의 `state` 객체로 관리하는 것이 좋음
+
+<br/>
 
 #### (2) State의 모순 피하기
 
@@ -134,7 +144,7 @@ const [isSending, setIsSending] = useState(false)
 const [isSent, setIsSent] = useState(false)
 ```
 
-✅ 3가지 유효한 상태 중 하나를 가질 수 있는 `status` state 변수 하나로 대체하는 것이 좋음
+✅ 3가지 유효한 상태 중 하나를 가질 수 있는 `status` 상태 하나로 대체하는 것이 좋다
 
 ```jsx
 const [status, setStatus] = useState('typing') // or 'sending' or 'sent'
@@ -144,21 +154,25 @@ const isSending = status === 'sending'
 const isSent = status === 'sent'
 ```
 
+<br/>
+
 #### (3) 불필요한 state 피하기
 
-컴포넌트의 `props`나 기존 `state` 변수에서 계산할 수 있는 정보라면, 해당 정보는 `state`로 선언하지 않아야 한다.
+컴포넌트의 `props`나 기존 `state` 변수에서 계산할 수 있는 정보라면, 해당 정보는 `state`로 선언하지 않아야 한다
 
 ```jsx
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  ~~const [fullName, setFullName] = useState('');~~
+const [firstName, setFirstName] = useState('')
+const [lastName, setLastName] = useState('')
+// const [fullName, setFullName] = useState('');
 ```
 
 ⇒ `fullName`은 `firstName`과 `lastName`의 조합으로 얻어낼 수 있는 정보이기 때문에 불필요한 `state` 변수이다.
 
+<br/>
+
 > 🔴 **Props를 state에 미러링하지 말 것!**
 >
-> `state`의 초기값은 첫 번째 렌더링 중에만 사용되기 때문에 `props` 값이 변경되더라도 `state` 변수가 업데이트되지 않는다. 따라서 `props` 데이터를 `state`의 초기값으로 사용하려는 의도적인 목적이 아니라면 `state`는 `props`를 `state`에 미러링해서는 안된다.
+> `state`의 초기값은 첫 번째 렌더링 중에만 사용되기 때문에 `props` 값이 변경되더라도 `state` 변수가 업데이트되지 않는다. 따라서 `props` 데이터를 `state`의 초기값으로 사용하려는 의도적인 목적이 아니라면 `props`를 `state`에 미러링해서는 안된다.
 
 ```jsx
 function Message({ messageColor }) {
@@ -174,6 +188,8 @@ function Message({ initialColor }) {
   // 'initial' 또는 'default'로 시작해 새로운 값이 무시됨을 명확히 해야한다
   const [color, setColor] = useState(initialColor);
 ```
+
+<br/>
 
 #### (4) State의 중복 피하기
 
@@ -199,9 +215,11 @@ export default function Menu() {
   - ⇒ `state` 변경 시 **동기화를 유지하기 어려움**
 - 중복된 항목을 제거하고 필수적인 `state`만 유지
   - items = [{ id: 0, title: 'pretzels'}, ...]
-  - selectedId = 0
+  - **selectedId = 0**
   - ⇒ `selectedItem`은 `items.find(item ⇒ [item.id](http://item.id) === selectedId)` 와 같은 방식으로 찾아 사용하면 **선택한 항목 객체 자체를 `state`로 유지할 필요 없음.**
 - **선택된 항목과 같은 UI 패턴**은 객체 자체가 아닌 `ID` 또는 `Index`를 `state`로 관리하는 것이 좋음
+
+<br/>
 
 #### (5) 깊게 중첩된 state 피하기
 
@@ -282,133 +300,134 @@ export const initialTravelPlan = {
   }
 ```
 
+<br/>
+
 ### 🚩 챌린지 - 선택 사라짐 수정하기
 
-⇒ state에 중복되는 데이터를 없애 동기화 문제 해결
+[`문제풀이`] state에 중복 데이터를 제거하여 동기화 문제 해결
 
 ```jsx
-import { useState } from 'react';
-import { initialLetters } from './data.js';
-import Letter from './Letter.js';
+import { useState } from 'react'
+import { initialLetters } from './data.js'
+import Letter from './Letter.js'
 
 export default function MailClient() {
-  const [letters, setLetters] = useState(initialLetters);
+  const [letters, setLetters] = useState(initialLetters)
   // letters 중 하나의 항목이 highlightedLetter로 데이터가 중복됨
-  ~~const [highlightedLetter, setHighlightedLetter] = useState(null);~~
+  // const [highlightedLetter, setHighlightedLetter] = useState(null);
   // 객체 자체 대신 ID를 state로 관리
-  const [highlightedLetterId, setHighlightedLetterId] = useState(null);
+  const [highlightedLetterId, setHighlightedLetterId] = useState(null)
 
   function handleHover(letter) {
-    setHighlightedLetterId(letter.id);
+    setHighlightedLetterId(letter.id)
   }
 
   function handleStar(starred) {
-    setLetters(letters.map(letter => {
-      if (letter.id === starred.id) {
-        return {
-          ...letter,
-          isStarred: !letter.isStarred
-        };
-      } else {
-        return letter;
-      }
-    }));
+    setLetters(
+      letters.map((letter) => {
+        if (letter.id === starred.id) {
+          return {
+            ...letter,
+            isStarred: !letter.isStarred,
+          }
+        } else {
+          return letter
+        }
+      }),
+    )
   }
 
   return (
     <>
       <h2>Inbox</h2>
       <ul>
-        {letters.map(letter => (
+        {letters.map((letter) => (
           <Letter
             key={letter.id}
             letter={letter}
-            isHighlighted={
-              letter.id === highlightedLetterId
-            }
+            isHighlighted={letter.id === highlightedLetterId}
             onHover={handleHover}
             onToggleStar={handleStar}
           />
         ))}
       </ul>
     </>
-  );
+  )
 }
-
 ```
+
+<br/>
 
 ### 🚩 챌린지 - 깨진 포장 목록 수정하기
 
-⇒ 필요한 최소한의 state만 유지하기
+[`문제풀이`] 필요한 최소한의 state만 유지하기, 계산할 수 있는 값은 상수로 선언하기
 
 ```jsx
-import { useState } from 'react';
-import AddItem from './AddItem.js';
-import PackingList from './PackingList.js';
+import { useState } from 'react'
+import AddItem from './AddItem.js'
+import PackingList from './PackingList.js'
 
-let nextId = 3;
+let nextId = 3
 const initialItems = [
   { id: 0, title: 'Warm socks', packed: true },
   { id: 1, title: 'Travel journal', packed: false },
   { id: 2, title: 'Watercolors', packed: false },
-];
+]
 
 export default function TravelPlan() {
-  const [items, setItems] = useState(initialItems);
+  const [items, setItems] = useState(initialItems)
+
   // total은 items.length로 계산가능
-  ~~const [total, setTotal] = useState(3);~~
+  // const [total, setTotal] = useState(3);
+
   // packed는 items.filter(item => item.packed).length 로 계산 가능
-  ~~const [packed, setPacked] = useState(1);~~
+  // const [packed, setPacked] = useState(1);~~
+
   // => state 대신 상수로 선언
-  const total = items.length;
-  const packed = items.filter(item => item.packed).length
-~~~~
+  const total = items.length
+  const packed = items.filter((item) => item.packed).length
+
   function handleAddItem(title) {
     setItems([
       ...items,
       {
         id: nextId++,
         title: title,
-        packed: false
-      }
-    ]);
+        packed: false,
+      },
+    ])
   }
 
   function handleChangeItem(nextItem) {
-    setItems(items.map(item => {
-      if (item.id === nextItem.id) {
-        return {
-         ...nextItem,
-         packed: !nextItem.packed
-        };
-      } else {
-        return item;
-      }
-    }));
+    setItems(
+      items.map((item) => {
+        if (item.id === nextItem.id) {
+          return {
+            ...nextItem,
+            packed: !nextItem.packed,
+          }
+        } else {
+          return item
+        }
+      }),
+    )
   }
 
   function handleDeleteItem(itemId) {
-    setItems(
-      items.filter(item => item.id !== itemId)
-    );
+    setItems(items.filter((item) => item.id !== itemId))
   }
 
   return (
     <>
-      <AddItem
-        onAddItem={handleAddItem}
-      />
-      <PackingList
-        items={items}
-        onChangeItem={handleChangeItem}
-        onDeleteItem={handleDeleteItem}
-      />
+      <AddItem onAddItem={handleAddItem} />
+      <PackingList items={items} onChangeItem={handleChangeItem} onDeleteItem={handleDeleteItem} />
       <hr />
-      <b>{packed} out of {total} packed!</b>
+      <b>
+        {packed} out of {total} packed!
+      </b>
     </>
-  );
+  )
 }
-
 ```
 
 ---
@@ -424,14 +443,14 @@ export default function TravelPlan() {
 
 ```jsx
 function Panel({ isActive }) {
- // state 제거 후 props로 받아오기
- ~~const [isActive, setIsActive] = useState(false);~~
+  // state 제거 후 props로 받아오기
+  // const [isActive, setIsActive] = useState(false);
 }
 ```
 
 #### `Step 2` 하드 코딩된 데이터를 부모 컴포넌트로 전달하기
 
-`state`는 데이터를 공유할 자식 컴포넌트들의 가장 가까운 공통 부모 컴포넌트에 둬야한다
+`state`는 데이터를 공유할 자식 컴포넌트들의 **가장 가까운 공통 부모 컴포넌트**에 둬야한다
 
 ```jsx
 function Accordion() {
