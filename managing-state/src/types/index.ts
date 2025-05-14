@@ -9,3 +9,9 @@ export interface FoodType {
   name: string
   description: string
 }
+
+export type ContactType = {
+  id: number
+  name: string
+  email: string
+}

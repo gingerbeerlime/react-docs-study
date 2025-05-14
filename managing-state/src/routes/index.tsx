@@ -4,6 +4,8 @@ import Home from '../pages/Home'
 import ReactingToInputWithState from '@/pages/ReactingToInputWithState'
 import ChoosingTheStateStructure from '@/pages/ChoosingTheStateStructure'
 import SharingStateBetweenComponents from '@/pages/SharingStateBetweenComponents'
+import PreservingAndResettingState from '@/pages/PreservingAndResettingState'
+import ExtractingStateLogicIntoAReducer from '@/pages/ExtractingStateLogicIntoAReducer'
 
 export const router = createBrowserRouter([
   {
@@ -27,5 +29,13 @@ export const router = createBrowserRouter([
   {
     path: '/sharing-state-between-components',
     element: <SharingStateBetweenComponents />,
+  },
+  {
+    path: '/preserving-and-resetting-state',
+    element: <PreservingAndResettingState />,
+  },
+  {
+    path: '/extracting-state-logic-into-a-reducer',
+    element: <ExtractingStateLogicIntoAReducer />,
   },
 ])
