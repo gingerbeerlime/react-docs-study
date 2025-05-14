@@ -1,5 +1,11 @@
+import Messenger from '@/components/ExtractingStateLogicIntoAReducer/Messenger'
+
 const ExtractingStateLogicIntoAReducer = () => {
-  return <div>ExtractingStateLogicIntoAReducer</div>
+  return (
+    <>
+      <Messenger />
+    </>
+  )
 }
 
 export default ExtractingStateLogicIntoAReducer
