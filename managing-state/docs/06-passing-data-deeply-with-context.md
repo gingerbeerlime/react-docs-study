@@ -7,13 +7,15 @@
 
 `Context`를 사용해 부모 컴포넌트가 **트리 아래에 있는 모든 컴포넌트에** 깊이와 상관없이 `props`를 통하지 않고 데이터를 전달할 수 있다.
 
-### Context 사용하기
+---
+
+## Context 사용하기
 
 1. Context 생성하기
 2. 데이터가 필요한 컴포넌트에서 context 사용하기
 3. 데이터를 지정하는 컴포넌트에서 context 제공하기
 
-#### (1) Context 생성하기
+### (1) Context 생성하기
 
 ```jsx
 import { createContext } from 'react'
@@ -24,7 +26,9 @@ export const LevelContext = createContext(1)
 - `createContext`의 유일한 인자는 **기본값**. 모든 종류의 값을 전달할 수 있다.
 - `context`를 제공하지 않고 사용하면 지정된 기본값 `1`을 사용한다.
 
-#### (2) Context 사용하기
+<br/>
+
+### (2) Context 사용하기
 
 ```jsx
 import { useContext } from 'react'
@@ -41,7 +45,9 @@ export default function Heading({ children }) {
   - 리액트에게 `Heading` 컴포넌트가 `LevelContext`를 읽으려 한다는 것을 알리는 역할
   - 컴포넌트 내부 최상단에서 호출해야 함.(조건문,반복문 내부 호출❌)
 
-#### (3) Context 제공하기
+<br/>
+
+### (3) Context 제공하기
 
 ```jsx
 export default function Section({ children }) {
@@ -127,7 +133,7 @@ export default function Page() {
 > - **글로벌 상태 공유**: React Query, Zustand, Redux를 쓰지 않고 간단한 전역 상태가 필요할 때(모달 열림 여부, 알림 메시지, 필터 값 등)
 > - **설정 정보**: API URL, 기능 ON/OFF 설정, 앱의 전역 설정값 등
 
-> 🔴 빈번하게 변경되는 상태를 context로 관리하면 성능 문제가 생길 수 있으므로 useReducer, memo 조합을 고려해볼 수 있다. → 더 알아보기
+---
 
 ### Context로 중간 컴포넌트 지나치기
 
@@ -137,6 +143,8 @@ export default function Page() {
 - 그러나 `css`에서 `color`와 `background-color`와 같이 다른 속성들은 서로 영향을 주지 않는 것 처럼 **서로 다른 `React context`는 영향을 주지 않는다**
 
 `createContext()`로 만든 각각의 `context`는 완벽히 분리되어 있고 특정 `context`를 사용 및 제공하는 컴포넌트끼리 묶여 있다. 하나의 컴포넌트는 서로 다른 다수의 `context`를 사용하거나 제공할 수 있다.
+
+---
 
 ### Context를 남용하지 말 것
 

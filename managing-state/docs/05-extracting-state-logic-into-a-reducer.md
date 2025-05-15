@@ -33,7 +33,9 @@ function handleDeleteTask(taskId) {
 
 ⇒ `state` 업데이트가 여러 이벤트 핸들러로 분산되는 경우, `state` 업데이트 로직을 `reducer`를 사용해 컴포넌트 외부의 **단일 함수로 통합해 관리**할 수 있다.
 
-### reducer를 사용해 state 로직 통합하기
+---
+
+## reducer를 사용해 state 로직 통합하기
 
 1. state를 설정하는 것에서 action을 dispatch 함수로 전달하는 것으로 변경
 2. reducer 함수 작성하기
@@ -75,6 +77,8 @@ dispatch({
   // 이외의 정보들은 자유로운 포맷으로 전달
 })
 ```
+
+<br/>
 
 ### (2) reducer 함수 작성하기
 
@@ -128,6 +132,8 @@ function tasksReducer(tasks, action) {
 
 > 📖 `reducer` 함수는 `reduce()` 연산의 이름을 따 명명되었음. `reduce` 함수는 지금까지의 결과와 현재 아이템을 인자로 받고 다음 결과를 반환하는 함수인데 **React의** `reducer` 역시 현재 상태(**state**)와 새로운 입력(**action**)을 인자로 받아 다음 상태(**state**)를 반환하는 방식으로 작동하므로, 로직의 구조가 유사하다.
 
+<br/>
+
 ### (3) 컴포넌트에서 reducer 사용하기
 
 - `useReducer` 훅 사용하기
@@ -136,7 +142,7 @@ function tasksReducer(tasks, action) {
 import { useReducer } from 'react'
 ```
 
-- useState 대신 **`useReducer` 사용하기**
+- `useState` 대신 **`useReducer` 사용하기**
 
 ```jsx
 // const [tasks, setTasks] = useState(initialTasks);
@@ -217,18 +223,22 @@ export default function tasksReducer(tasks, action) {
 
 ⇒ **`state`를 업데이트하는 로직이 다양하고 복잡할 때 `reducer`를 사용**하면 컴포넌트의 로직을 더 읽기 쉽게 작성할 수 있다.
 
-### reducer 함수 잘 사용하기
+---
+
+## reducer 함수 잘 사용하기
 
 > 🔴 무조건 useReducer를 쓴다고 좋은 것이 아님! 컴포넌트의 로직구조에 맞게 useState, useReducer 적절한 방식을 선택해서 사용해야 한다.
+>
+> - **간단한 state 업데이트**의 경우? → `useState`를 쓰는 것이 낫다
+>   - 미리 작성해야 하는 코드가 적고 간단한 로직에서는 오히려 useReducer보다 가독성이 좋다
+> - **state 업데이트가 복잡한 구조인** 경우 ? → `useReducer`를 쓰는 것이 좋다
+>   - 업데이트 로직이 어떻게 동작하는지, 이벤트 핸들러를 통해 무엇이 발생했는지 명확히 구분할 수 있다.
+>   - `reducer`에 콘솔 로그를 추가해 단계별로 디버깅하기 좋다
+>   - `reducer`는 컴포넌트에 의존하지 않는 순수 함수로, `reducer`를 독립적으로 테스트할 수 있다.
+> - useState, useReducer 혼합해서 사용하는 것도 괜찮다.
+> - useImmerReducer를 사용해 reducer를 더 간결하게 사용할 수도 있다.
 
-- **간단한 state 업데이트**의 경우? → `useState`를 쓰는 것이 낫다
-  - 미리 작성해야 하는 코드가 적고 간단한 로직에서는 오히려 useReducer보다 가독성이 좋다
-- **state 업데이트가 복잡한 구조인** 경우 ? → `useReducer`를 쓰는 것이 좋다
-  - 업데이트 로직이 어떻게 동작하는지, 이벤트 핸들러를 통해 무엇이 발생했는지 명확히 구분할 수 있다.
-  - `reducer`에 콘솔 로그를 추가해 단계별로 디버깅하기 좋다
-  - `reducer`는 컴포넌트에 의존하지 않는 순수 함수로, `reducer`를 독립적으로 테스트할 수 있다.
-- useState, useReducer 혼합해서 사용하는 것도 괜찮다.
-- useImmerReducer를 사용해 reducer를 더 간결하게 사용할 수도 있다.
+<br/>
 
 > 🔴 Reducer 함수 작성할 때 주의할 점
 >
@@ -236,6 +246,8 @@ export default function tasksReducer(tasks, action) {
 >   - 네트워크 요청, 스케쥴링, 사이드 이펙트를 수행해서는 안된다
 >   - 객체와 배열을 변경하지 않고 업데이트해야 한다
 > - 각 `action`은 데이터 안에서 여러 변경들이 있더라도 **하나의 사용자 상호작용을 설명해야 한다** - ex) 5개의 필드가 있는 폼에서 재설정을 클릭할 때, 5개의 개별 action(`set_field`)이 아닌 **하나의 action(`reset_form` )**을 전송하는 것이 좋다
+
+---
 
 ### 🚩 챌린지 - message 전송 시, input 입력 값 지우기
 
@@ -258,9 +270,9 @@ export default function tasksReducer(tasks, action) {
 </Button>
 ```
 
-[`더 좋은 코드`] 리듀서에 `sent_message` 액션 타입 추가
+[✨`더 좋은 코드`] 리듀서에 `sent_message` 액션 타입 추가
 
-사용자 관점에서 봤을 때 ‘**message를 전송하는** 것’과 ‘**Input 필드에 텍스트를 입력하는 것**’은 다른 행위이기 때문에 이를 구분해서 `sent_message`라는 액션 타입을 별도로 만들어주는 것이 ‘사용자가 무엇을 했는지’ \*\*\*\*명확하게 설명할 수 있다.
+사용자 관점에서 봤을 때 ‘**message를 전송하는** 것’과 ‘**Input 필드에 텍스트를 입력하는 것**’은 다른 행위이기 때문에 이를 구분해서 `sent_message`라는 액션 타입을 별도로 만들어주는 것이 **‘사용자가 무엇을 했는지’** 명확하게 설명할 수 있다.
 
 ```jsx
 export function messengerReducer(state: MessengerState, action: MessengerAction) {

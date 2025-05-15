@@ -1,6 +1,6 @@
 ## State를 보존하고 초기화하기
 
-### 리액트는 언제 State를 보존하고 언제 State를 초기화할까? ⇒ State는 렌더트리의 위치와 연결된다.
+### 리액트는 언제 State를 보존하고 언제 State를 초기화할까? ⇒ State는 렌더트리의 위치와 연결된다
 
 ```jsx
 export default function App() {
@@ -35,7 +35,9 @@ flowchart TD
 - `Counter` 컴포넌트는 각각 자기 고유의 위치에서 렌더링된다.
 - ⇒ 두 `Counter` 컴포넌트는 **자신만의 독립적인 state를 가지며 작동**한다.
 
-### 리액트는 트리의 동일한 컴포넌트를 동일한 위치에서 렌더링하는 동안 상태를 유지한다.
+<br/>
+
+### 리액트는 트리의 동일한 컴포넌트를 동일한 위치에서 렌더링하는 동안 상태를 유지한다
 
 ```jsx
 export default function App() {
@@ -57,6 +59,8 @@ function Counter() {
 - `showB`가 `false`가 되어 두번째 `Counter`가 사라질 때 컴포넌트의 `state`도 같이 초기화된다.
 - 다시 `showB`가 `true`로 바뀌면 `Counter`의 `state`는 초기값으로 세팅된다.
 - ⇒ **리액트에서 컴포넌트가 제거될 때 컴포넌트의 `state`도 함께 제거된다**
+
+<br/>
 
 ```jsx
 import { useState } from 'react'
@@ -128,6 +132,8 @@ export default function MyComponent() {
 
 - `MyComponent`가 리렌더링 될 때마다 리액트는 `MyTextField` 함수 자체를 새로 정의하고 내부 상태(`text`)를 초기값으로 다시 설정한다.
 
+<br/>
+
 ### 같은 위치에서 state를 초기화하고 싶다면?
 
 1. 다른 위치에 컴포넌트 렌더링하기
@@ -173,15 +179,19 @@ export default function Scoreboard() {
 
 > 🔴 key는 전역적으로 유일하지 않다. 오직 부모 요소 내부에서 각 항목의 위치를 식별하기 위한 용도이다.
 
+<br/>
+
 ### 제거된 컴포넌트의 state 보존하기
 
 Q. 컴포넌트가 트리에서 제거되면 `state`도 같이 초기화되는데, 제거된 컴포넌트가 다시 렌더링되었을 때 이전의 `state`값을 기억하고 싶으면 어떻게 해야할까?
 
 A.
 
-1. css로 컴포넌트 숨기기 → 트리에서 사라지는 것이 아니기 대문에 state를 유지할 수 있다.
-2. state를 상위로 올리기 → 부모 컴포넌트가 유지되는 한, 자식 컴포넌트가 제거되어도 상관없다.
+1. `css`로 컴포넌트 숨기기 → 트리에서 사라지는 것이 아니기 때문에 `state`를 유지할 수 있다.
+2. `state`를 상위로 올리기 → 부모 컴포넌트가 유지되는 한, 자식 컴포넌트가 제거되어도 상관없다.
 3. React state 이외의 다른 저장소 사용하기 ex) localStorage
+
+<br/>
 
 ✨ 요약
 

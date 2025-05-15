@@ -9,6 +9,8 @@
 3. **상태 변경 로직과 데이터를 함께 추상화해서 재사용하고 싶을 때**
    1. 상태를 어떻게 바꾸는지(`dispatch`)와 현재 상태(`state`)를 함께 `context`로 추출하면, 다른 UI 계층에서도 같은 방식으로 쉽게 접근 가능
 
+---
+
 ### Context와 Reducer 결합하기
 
 1. Context 생성하기
@@ -106,11 +108,13 @@ export default function AddTask({ onAddTask }) {
     // ...
 ```
 
+---
+
 ### Context와 Reducer를 하나의 파일로 관리하기
 
-1. reducer로 state를 관리하고
-2. 두 context를 하위 컴포넌트에 제공
-3. children prop으로 하위 트리를 전달
+1. `reducer`로 state를 관리하고
+2. 두 `context`를 하위 컴포넌트에 제공
+3. `children` prop으로 하위 트리를 전달
 
 ```jsx
 import { createContext, useContext, useReducer } from 'react'
