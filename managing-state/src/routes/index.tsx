@@ -6,6 +6,8 @@ import ChoosingTheStateStructure from '@/pages/ChoosingTheStateStructure'
 import SharingStateBetweenComponents from '@/pages/SharingStateBetweenComponents'
 import PreservingAndResettingState from '@/pages/PreservingAndResettingState'
 import ExtractingStateLogicIntoAReducer from '@/pages/ExtractingStateLogicIntoAReducer'
+import PassingDataDeeplyWithContext from '@/pages/PassingDataDeeplyWithContext'
+import ScalingUpWithReducerAndContext from '@/pages/ScalingUpWithReducerAndContext'
 
 export const router = createBrowserRouter([
   {
@@ -37,5 +39,13 @@ export const router = createBrowserRouter([
   {
     path: '/extracting-state-logic-into-a-reducer',
     element: <ExtractingStateLogicIntoAReducer />,
+  },
+  {
+    path: '/passing-data-deeply-with-context',
+    element: <PassingDataDeeplyWithContext />,
+  },
+  {
+    path: '/scaling-up-with-reducer-and-context',
+    element: <ScalingUpWithReducerAndContext />,
   },
 ])

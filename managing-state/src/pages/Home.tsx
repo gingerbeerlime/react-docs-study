@@ -23,6 +23,12 @@ const Home = () => {
         <Link to='/extracting-state-logic-into-a-reducer'>
           <Button className={buttonClass}>State 로직을 Reducer로 추출하기</Button>
         </Link>
+        <Link to='/passing-data-deeply-with-context'>
+          <Button className={buttonClass}>Context를 사용해 데이터 깊게 전달하기</Button>
+        </Link>
+        <Link to='/scaling-up-with-reducer-and-context'>
+          <Button className={buttonClass}>Reducer와 Context로 앱 확장하기</Button>
+        </Link>
       </div>
     </div>
   )
