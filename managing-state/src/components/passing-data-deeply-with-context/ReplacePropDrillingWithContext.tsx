@@ -6,6 +6,7 @@ import { PlaceType } from '@/types'
 import { Input, Label } from '@/components/ui'
 
 export default function App() {
+  console.log('image size context', ImageSizeContext)
   const [isLarge, setIsLarge] = useState(false)
   const imageSize = isLarge ? 150 : 100
 
@@ -22,9 +23,9 @@ export default function App() {
         Use large images
       </Label>
       <hr />
-      <ImageSizeContext.Provider value={imageSize}>
+      <ImageSizeContext value={imageSize}>
         <List />
-      </ImageSizeContext.Provider>
+      </ImageSizeContext>
     </>
   )
 }
