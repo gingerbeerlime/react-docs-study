@@ -75,10 +75,10 @@ export default Stopwatch
 ```
 
 ```jsx
-const [startTime, setStartTime] = (useState < number) | (null > null)
-const [now, setNow] = (useState < number) | (null > null)
+const [startTime, setStartTime] = useState<number | null>(null)
+const [now, setNow] = useState<number | null>(null)
 
-const intervalRef = (useRef < NodeJS.Timeout) | (undefined > undefined)
+const intervalRef = useRef<NodeJS.Timeout | undefined>()
 ```
 
 - **렌더링에 사용되는 정보**들은 변경될 때 UI에 반영이 되어야하므로 `State`로 관리
