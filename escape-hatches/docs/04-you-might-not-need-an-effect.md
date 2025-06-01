@@ -1,7 +1,7 @@
 ## Effect가 필요하지 않은 경우
 
-> 렌더링 로직이나 사용자 이벤트 처리에는 Effect가 필요 없다.
-> 외부와의 동기화가 필요한 경우에만 Effect를 사용해야 한다.
+> 렌더링 로직이나 사용자 이벤트 처리에는 Effect가 필요 없다.<br/>
+> 외부와의 동기화가 필요한 경우에만 Effect를 사용해야 한다.<br/>
 > ex) 네트워크 요청, 타이머, DOM 조작, 로컬 스토리지, 분리된 이벤트 소스 등
 
 <br/>
@@ -54,7 +54,7 @@ function TodoList({ todos, filter }) {
 
 ### prop 변경 시 모든 state 초기화 - `key`
 
-❌ prop으로 전달된 `userId`가 변경될 때 `useEffect`에서 `state` 초기화 → 복잡성 증가
+❌ prop으로 전달된 `userId`가 변경될 때 `useEffect`에서 `state` 초기화 → 복잡성 증가 & 불필요한 리렌더링
 
 ```jsx
 export default function ProfilePage({ userId }) {
@@ -100,10 +100,10 @@ function List({ items }) {
 }
 ```
 
-✅ 렌더링 중 state 조정하기
+🔺 렌더링 중 state 조정하기
 
 - 렌더링 중 `setSelection`을 호출하면 아직 리액트가 DOM을 업데이트하기 전이기 때문에 오래된 `selection` 값의 렌더링을 건너뛸 수 있음
-- ⚠️ 렌더링 중이 state 값을 변경하게 되면 오래된 selection 값의 렌더링을 건너뛸 수 있다는 성능상 장점은 있지만 리액트는 렌더링 중 state 값을 변경하는 것을 권장하지 않음
+- ⚠️ 렌더링 중이 `state` 값을 변경하게 되면 오래된 `selection` 값의 렌더링을 건너뛸 수 있다는 성능상 장점은 있지만 리액트는 렌더링 중 `state` 값을 변경하는 것을 권장하지 않음
 
 ```jsx
 function List({ items }) {
@@ -120,7 +120,7 @@ function List({ items }) {
 }
 ```
 
-✅ ✅ 렌더링 중 `state` 조정할 필요 없이! `key`를 사용하거나 렌더링 중 모든 `state` 계산
+✅ 렌더링 중 `state` 조정할 필요 없이! `key`를 사용하거나 렌더링 중 모든 `state` 계산
 
 - `items` 값이 변경되더라도 선택된 항목 `state`를 업데이트 할 필요가 없음. `selectedId`를 사용해 렌더링 중 계산
 
@@ -221,7 +221,7 @@ function ChatIndicator() {
 ```
 
 - 컴퓨터가 인터넷에 연결되어있는지 여부를 리액트랑 동기화시키고 싶을 때
-  - `useEffect`문에서 수동으로 브라우저의 [`navigator.onLine`](http://navigator.onLine) API를 구독하는 것보다 `useSyncExternalStore` 훅을 사용한 커스텀 훅을 작성해서 사용하는 것이 안정적으로 사용할 수 있다.
+  - `useEffect`문에서 수동으로 브라우저의 `navigator.onLine` API를 구독하는 것보다 `useSyncExternalStore` 훅을 사용한 커스텀 훅을 작성해서 사용하는 것이 안정적으로 사용할 수 있다.
 
 ---
 
@@ -243,7 +243,7 @@ export default function TodoList() {
 }
 ```
 
-✨더 좋은 방식 : `NewForm` 분리하기(state 분리)
+✨<strong>더 좋은 방식 : `NewForm` 분리하기(state 분리)</strong>
 
 - `NewTodo` 폼을 분리하게 되면 `text` 상태값 변경에 영향을 받지 않으므로 `useMemo`를 사용하지 않아도 불필요한 계산을 하지 않는다
 
