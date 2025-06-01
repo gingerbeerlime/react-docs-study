@@ -224,6 +224,8 @@ export default function App() {
 - 그 때 `handleMove`가 이벤트 리스너로 등록됨
 - `handleMove`는 정의될 당시의 `canMove`값을 기억한 상태로 등록됨
 
+<br/>
+
 ⇒ [`🔺(잘못된)해결1`]
 
 ```jsx
@@ -241,10 +243,9 @@ useEffect(() => {
 
 - `handleMove`에서 `canMove`를 체크하지 않기 때문에 반드시 이벤트 등록 자체를 상태로 컨트롤해야 하는데 의존성 배열에 `canMove`가 누락되면 위험해짐
 
-⇒ [`💡해결2`] **더 안전하고 리액트의 동작 방식에 맞음!**
+<br/>
 
-- `handleMove`를 `useEffect` 안에서 선언하고 바로 이벤트에 등록
-- `canMove`값을 직접 내부에서 사용
+⇒ [`💡해결2`] **더 안전하고 리액트의 동작 방식에 맞음!**
 
 ```jsx
 useEffect(() => {
@@ -259,5 +260,7 @@ useEffect(() => {
 }, [canMove])
 ```
 
+- `handleMove`를 `useEffect` 안에서 선언하고 바로 이벤트에 등록
+- `canMove`값을 직접 내부에서 사용
 - 최신 `canMove`값에 안전하게 접근 가능 : `canMove`를 클로저로 안전하게 가져와 항상 최신 값을 사용
 - 의존성 관리가 명확 : `canMove`가 바뀌면 `handleMove`도 같이 새로 만들어지고 등록됨 → 정상적이고 안전한 흐름
