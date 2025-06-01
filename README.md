@@ -55,3 +55,15 @@
 **State 관리하기(2)**
 
 - [State 관리하기]https://github.com/gingerbeerlime/react-docs-study/tree/main/managing-state
+
+### Week10(2025/05/25)
+
+**탈출구(1)**
+
+- [탈출구]https://github.com/gingerbeerlime/react-docs-study/blob/main/escape-hatches/docs/01-referencing-values-with-refs.md
+
+### Week11(2025/06/01)
+
+**탈출구(2)**
+
+- [탈출구]https://github.com/gingerbeerlime/react-docs-study/blob/main/escape-hatches/docs/03-synchronizing-with-effects.md
