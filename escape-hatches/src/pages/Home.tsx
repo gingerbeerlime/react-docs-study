@@ -18,6 +18,9 @@ const Home = () => {
         <Link to='/you-might-not-need-an-effect'>
           <Button>Effect가 필요하지 않은 경우</Button>
         </Link>
+        <Link to='/lifecycle-of-reactive-effect'>
+          <Button>Reactive Effect의 생명주기</Button>
+        </Link>
       </div>
     </div>
   )

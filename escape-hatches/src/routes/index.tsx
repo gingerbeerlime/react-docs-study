@@ -5,6 +5,8 @@ import ReferencingValuesWithRefs from '@/pages/ReferencingValuesWithRefs'
 import ManipulatingTheDomWithRefs from '@/pages/ManipulatingTheDomWithRefs'
 import SynchronizingWithEffects from '@/pages/SynchronizingWithEffects'
 import YouMightNotNeedAnEffect from '@/pages/YouMightNotNeedAnEffect'
+import LifecycleOfReactiveEffect from '@/pages/LifecycleOfReactiveEffect'
+
 export const router = createBrowserRouter([
   {
     path: '/',
@@ -31,5 +33,9 @@ export const router = createBrowserRouter([
   {
     path: '/you-might-not-need-an-effect',
     element: <YouMightNotNeedAnEffect />,
+  },
+  {
+    path: '/lifecycle-of-reactive-effect',
+    element: <LifecycleOfReactiveEffect />,
   },
 ])
