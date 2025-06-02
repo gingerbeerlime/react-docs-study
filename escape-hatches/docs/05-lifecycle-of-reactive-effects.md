@@ -192,7 +192,7 @@ useEffect(() => {
 
 ---
 
-### 🚩 챌린지: 오래된 값 버그 조사하기
+### 🚩 챌린지: 오래된 값 버그 조사하기(Stale Value Bug)
 
 ```jsx
 import { useState, useEffect } from 'react';
@@ -212,7 +212,6 @@ export default function App() {
     return () => window.removeEventListener('pointermove', handleMove);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
 	...
 }
 
@@ -222,11 +221,12 @@ export default function App() {
 
 - `useEffect`는 컴포넌트가 처음 렌더링될 때 딱 한 번 실행됨
 - 그 때 `handleMove`가 이벤트 리스너로 등록됨
-- `handleMove`는 정의될 당시의 `canMove`값을 기억한 상태로 등록됨
+- `handleMove`는 컴포넌트가 렌더링될 때 정의되고, 이 때의 `canMove` 값을 클로저로 캡처함<br/>
+  => `canMove` 값이 갱신되더라도 `handleMove`는 컴포넌트가 처음 마운트되어 등록될 때의 `canMove`값을 기억하고 있음
 
 <br/>
 
-⇒ [`🔺(잘못된)해결1`]
+⇒ [`🔺해결1`] **유지보수 측면에서 잠재적 위험이 있음**
 
 ```jsx
 function handleMove(e) {
@@ -242,6 +242,8 @@ useEffect(() => {
 ```
 
 - `handleMove`에서 `canMove`를 체크하지 않기 때문에 반드시 이벤트 등록 자체를 상태로 컨트롤해야 하는데 의존성 배열에 `canMove`가 누락되면 위험해짐
+- `useEffect는` 처음 실행될 떄의 `handleMove를` 클로저로 캡처하여 등록하며, 이후 `canMove가` 바뀌더라도 이 핸들러는 갱신되지 않음
+- 이 코드도 작동은 잘 되지만 `handleMove` 내부에서 나중에 다른 상태를 참조하게 된다면, **버그 발생 가능성이 커짐**
 
 <br/>
 
@@ -262,5 +264,29 @@ useEffect(() => {
 
 - `handleMove`를 `useEffect` 안에서 선언하고 바로 이벤트에 등록
 - `canMove`값을 직접 내부에서 사용
-- 최신 `canMove`값에 안전하게 접근 가능 : `canMove`를 클로저로 안전하게 가져와 항상 최신 값을 사용
-- 의존성 관리가 명확 : `canMove`가 바뀌면 `handleMove`도 같이 새로 만들어지고 등록됨 → 정상적이고 안전한 흐름
+- 최신 `canMove`값에 안전하게 접근 가능 : `handleMove` 함수는 `useEffect` 실행 시점에 함께 정의되므로, 그 클로저에는 항상 최신 `canMove`가 포함된다.
+- 의존성 관리가 명확 : `canMove`가 바뀌면 `useEffect`도 다시 실행되고, 그 안의 `handleMove`도 재정의 및 재등록되므로 클로저가 새로 갱신된다.
+
+<br/>
+
+⇒ [`💡해결3`] **useCallback 사용하기**
+
+```jsx
+const handleMove = useCallback(
+  (e) => {
+    if (canMove) {
+      setPosition({ x: e.clientX, y: e.clientY })
+    }
+  },
+  [canMove],
+)
+
+useEffect(() => {
+  window.addEventListener('pointermove', handleMove)
+  return () => window.removeEventListener('pointermove', handleMove)
+}, [handleMove])
+```
+
+- `useCallback`은 `canMove`가 바뀔 때마다 새로운 `handleMove`함수를 생성
+- 이렇게 생성된 handleMove는 최신 canMove 값을 포함하는 클로저가 되고,
+- useEffect는 handleMove를 의존성으로 가지므로 리스너도 자동으로 교체된다.
