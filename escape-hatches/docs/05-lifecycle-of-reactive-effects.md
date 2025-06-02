@@ -264,8 +264,8 @@ useEffect(() => {
 
 - `handleMove`를 `useEffect` 안에서 선언하고 바로 이벤트에 등록
 - `canMove`값을 직접 내부에서 사용
-- 최신 `canMove`값에 안전하게 접근 가능 : `handleMove` 함수는 `useEffect` 실행 시점에 함께 정의되므로, 그 클로저에는 항상 최신 `canMove`가 포함된다.
-- 의존성 관리가 명확 : `canMove`가 바뀌면 `useEffect`도 다시 실행되고, 그 안의 `handleMove`도 재정의 및 재등록되므로 클로저가 새로 갱신된다.
+- 최신 `canMove`값에 안전하게 접근 가능 : `handleMove` 함수는 `useEffect` 실행 시점에 함께 정의되므로, 그 클로저에는 항상 최신 `canMove`가 포함됨
+- 의존성 관리가 명확 : `canMove`가 바뀌면 `useEffect`도 다시 실행되고, 그 안의 `handleMove`도 재정의 및 재등록되므로 클로저가 새로 갱신됨
 
 <br/>
 
@@ -288,5 +288,5 @@ useEffect(() => {
 ```
 
 - `useCallback`은 `canMove`가 바뀔 때마다 새로운 `handleMove`함수를 생성
-- 이렇게 생성된 handleMove는 최신 canMove 값을 포함하는 클로저가 되고,
-- useEffect는 handleMove를 의존성으로 가지므로 리스너도 자동으로 교체된다.
+- 이렇게 생성된 `handleMove`는 최신 `canMove` 값을 포함하는 클로저가 되고,
+- `useEffect`는 `handleMove를` 의존성으로 가지므로 리스너도 자동으로 교체된다.
