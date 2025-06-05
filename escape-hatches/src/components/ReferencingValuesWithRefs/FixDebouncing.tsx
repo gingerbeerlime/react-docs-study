@@ -11,7 +11,9 @@ function DebouncedButton({ onClick, children }: DebouncedButtonProps) {
   return (
     <Button
       onClick={() => {
-        timeoutRef.current && clearTimeout(timeoutRef.current)
+        if (timeoutRef.current) {
+          clearTimeout(timeoutRef.current)
+        }
         timeoutRef.current = setTimeout(() => {
           onClick()
         }, 1000)

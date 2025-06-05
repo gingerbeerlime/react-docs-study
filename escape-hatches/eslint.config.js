@@ -8,11 +8,7 @@ import prettier from 'eslint-plugin-prettier'
 export default tseslint.config(
   { ignores: ['dist'] },
   {
-    extends: [
-      js.configs.recommended,
-      ...tseslint.configs.recommended,
-      'plugin:prettier/recommended',
-    ],
+    extends: [js.configs.recommended, ...tseslint.configs.recommended],
     files: ['**/*.{ts,tsx}'],
     languageOptions: {
       ecmaVersion: 2020,
@@ -24,7 +20,9 @@ export default tseslint.config(
       prettier,
     },
     rules: {
-      ...reactHooks.configs.recommended.rules,
+      ...prettier.configs.recommended.rules,
+      'react-hooks/rules-of-hooks': 'error',
+      'react-hooks/exhaustive-deps': 'warn',
       'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
       'prettier/prettier': 'warn',
     },

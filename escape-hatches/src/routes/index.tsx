@@ -6,6 +6,9 @@ import ManipulatingTheDomWithRefs from '@/pages/ManipulatingTheDomWithRefs'
 import SynchronizingWithEffects from '@/pages/SynchronizingWithEffects'
 import YouMightNotNeedAnEffect from '@/pages/YouMightNotNeedAnEffect'
 import LifecycleOfReactiveEffect from '@/pages/LifecycleOfReactiveEffect'
+import SeperatingEventsFromEffects from '@/pages/SeperatingEventsFromEffects'
+import RemovingEffectDependencies from '@/pages/RemovingEffectDependencies'
+import ReusingLogicWithCustomHooks from '@/pages/ReusingLogicWithCustomHooks'
 
 export const router = createBrowserRouter([
   {
@@ -37,5 +40,17 @@ export const router = createBrowserRouter([
   {
     path: '/lifecycle-of-reactive-effect',
     element: <LifecycleOfReactiveEffect />,
+  },
+  {
+    path: '/seperating-events-from-effects',
+    element: <SeperatingEventsFromEffects />,
+  },
+  {
+    path: '/removing-effect-dependencies',
+    element: <RemovingEffectDependencies />,
+  },
+  {
+    path: '/reusing-logic-with-custom-hooks',
+    element: <ReusingLogicWithCustomHooks />,
   },
 ])

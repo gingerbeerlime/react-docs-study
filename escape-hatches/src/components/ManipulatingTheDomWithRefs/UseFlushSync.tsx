@@ -39,7 +39,7 @@ export default function TodoList() {
 }
 
 let nextId = 0
-let initialTodos: Todo[] = []
+const initialTodos: Todo[] = []
 for (let i = 0; i < 20; i++) {
   initialTodos.push({
     id: nextId++,

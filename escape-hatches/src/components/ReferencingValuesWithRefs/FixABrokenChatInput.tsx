@@ -17,7 +17,9 @@ export default function Chat() {
 
   function handleUndo() {
     setIsSending(false)
-    timeoutID.current && clearTimeout(timeoutID.current)
+    if (timeoutID.current) {
+      clearTimeout(timeoutID.current)
+    }
   }
 
   return (

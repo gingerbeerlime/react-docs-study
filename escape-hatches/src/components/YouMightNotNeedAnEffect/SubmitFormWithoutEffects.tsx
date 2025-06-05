@@ -8,7 +8,7 @@ export default function Form() {
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
     setShowForm(false)
-    sendMessage
+    sendMessage(message)
   }
 
   if (!showForm) {

@@ -21,6 +21,15 @@ const Home = () => {
         <Link to='/lifecycle-of-reactive-effect'>
           <Button>Reactive Effect의 생명주기</Button>
         </Link>
+        <Link to='/seperating-events-from-effects'>
+          <Button>Effect에서 이벤트 분리하기</Button>
+        </Link>
+        <Link to='/removing-effect-dependencies'>
+          <Button>Effect에서 의존성 제거하기</Button>
+        </Link>
+        <Link to='/reusing-logic-with-custom-hooks'>
+          <Button>로직 재사용하기</Button>
+        </Link>
       </div>
     </div>
   )

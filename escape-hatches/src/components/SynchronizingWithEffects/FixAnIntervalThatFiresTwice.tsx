@@ -12,7 +12,9 @@ export default function Counter() {
     intervalIdRef.current = setInterval(onTick, 1000)
 
     return () => {
-      intervalIdRef.current && clearInterval(intervalIdRef.current)
+      if (intervalIdRef.current) {
+        clearInterval(intervalIdRef.current)
+      }
     }
   }, [])
 
