@@ -9,7 +9,7 @@ export function createConnection(serverUrl: string, roomId: string) {
   }
 }
 
-export function createEncryptedConnection(roomId: string) {
+export function createEncryptedConnection(serverUrl: string, roomId: string) {
   // 실제 구현은 실제로 서버에 연결됩니다.
   return {
     connect() {
@@ -21,7 +21,7 @@ export function createEncryptedConnection(roomId: string) {
   }
 }
 
-export function createUnencryptedConnection(roomId: string) {
+export function createUnencryptedConnection(serverUrl: string, roomId: string) {
   // 실제 구현은 실제로 서버에 연결됩니다.
   return {
     connect() {
