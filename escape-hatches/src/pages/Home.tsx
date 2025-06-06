@@ -28,7 +28,7 @@ const Home = () => {
           <Button>Effect에서 의존성 제거하기</Button>
         </Link>
         <Link to='/reusing-logic-with-custom-hooks'>
-          <Button>로직 재사용하기</Button>
+          <Button>커스텀 Hook으로 로직 재사용하기</Button>
         </Link>
       </div>
     </div>
