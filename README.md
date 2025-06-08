@@ -67,3 +67,9 @@
 **탈출구(2)**
 
 - [탈출구]https://github.com/gingerbeerlime/react-docs-study/blob/main/escape-hatches/docs/03-synchronizing-with-effects.md
+
+### Week12(2025/06/08)
+
+**탈출구(3)**
+
+- [탈출구]https://github.com/gingerbeerlime/react-docs-study/blob/main/escape-hatches/docs/06-seperating-events-from-effects.md
