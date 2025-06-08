@@ -31,8 +31,8 @@ module.exports = {
     "react-hooks",
   ],
   rules: {
-    "react-hooks/rules-of-hooks": "error",         // Hooks 규칙 강제
-    "react-hooks/exhaustive-deps": "warn",         // 의존성 배열 검사
+    "react-hooks/rules-of-hooks": "error", // Hooks 규칙 강제
+    "react-hooks/exhaustive-deps": "warn", // 의존성 배열 검사
   },
 };
 ```
@@ -126,7 +126,7 @@ function ChatRoom({ roomId }) {
 ```
 
 - `props`인 `roomId`는 **반응형 값**으로 의존성 목록에서 제외시킬 수 없다.
-- `roomId`가 의존성이 될 필요가 없다면 그것을 린터에 증명하면 된다.
+- `roomId`가 의존성이 될 필요가 없다면 그것을 린터에 증명하면 된다.<br/>
   ⇒ `roomId`를 컴포넌트 밖으로 이동시켜 반응형 값이 아니고 재랜더링 시에도 변경되지 않는 값임을 보여준다.
 
   ```jsx
@@ -268,10 +268,33 @@ function ChatRoom({ roomId }) {
   }, [roomId, isMuted]); // ✅ All dependencies declared
   // ...
 ```
+- `isMuted`를 의존성에서 빼버리면 `isMuted`값이 변경되더라도 `useEffect`는 그것을 알지 못함.
+- `EffectEvent`를 사용해서 `useEffect`가 `isMuted`값에 반응하지 않으면서도 항상 최신값을 읽을 수  있도록 해야함
+  
+```jsx
+import { useState, useEffect, useEffectEvent } from 'react';
 
-⇒ 이 코드가 작동하지 않는 이유?
+function ChatRoom({ roomId }) {
+  const [messages, setMessages] = useState([]);
+  const [isMuted, setIsMuted] = useState(false);
 
-⇒ 린터를 억제하면 isMuted가 이전 값으로 고착되는 이유?,,
+  const onMessage = useEffectEvent(receivedMessage => {
+    setMessages(msgs => [...msgs, receivedMessage]);
+    if (!isMuted) {
+      playSound();
+    }
+  });
+
+  useEffect(() => {
+    const connection = createConnection();
+    connection.connect();
+    connection.on('message', (receivedMessage) => {
+      onMessage(receivedMessage);
+    });
+    return () => connection.disconnect();
+  }, [roomId]); // ✅ All dependencies declared
+  // ...
+```
 
 <br/>
 
