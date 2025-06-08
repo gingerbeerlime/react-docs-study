@@ -2,12 +2,12 @@
 
 > 이 코드가 왜 실행되어야하는지 생각해보기🤔
 
-- 채팅방 컴포넌트는 선택된 채팅방에 자동으로 연결해야 한다.
-  ⇒ 사용자가 **아무런 상호작용을 하지 않아도** 채팅방 컴포넌트는 화면에 보여질 때 선택된 채팅 서버에 연결되어 있어야 한다.
-  ⇒ 동기화가 필요할 때마다 실행된다.
+- 채팅방 컴포넌트는 선택된 채팅방에 자동으로 연결해야 한다.<br/>
+  ⇒ 사용자가 **아무런 상호작용을 하지 않아도** 채팅방 컴포넌트는 화면에 보여질 때 선택된 채팅 서버에 연결되어 있어야 한다.<br/>
+  ⇒ 동기화가 필요할 때마다 실행된다.<br/>
   ⇒ `Effect`
-- **“전송”버튼을 클릭하면** 채팅에 메시지를 전송해야 한다.
-  ⇒ 특정 상호작용(버튼 클릭)에 대한 응답으로 실행된다.
+- **“전송”버튼을 클릭하면** 채팅에 메시지를 전송해야 한다.<br/>
+  ⇒ 특정 상호작용(버튼 클릭)에 대한 응답으로 실행된다.<br/>
   ⇒ `Event Handler`
 
 <br/>
@@ -25,8 +25,8 @@ function handleSendClick() {
 }
 ```
 
-- `message`를 바꾸는 것이 메세지를 전송하고 싶다는 의미가 아님
-  ⇒ `message` 값이 변경되었다는 이유로 로직이 실행되서는 안됨
+- `message`의 내용을 바꾸는 것이 메세지를 전송하고 싶다는 의미가 아님<br/>
+  ⇒ 따라서 `message` 값이 변경되었다는 이유로 로직이 실행되서는 안됨
 
 <br/>
 
@@ -45,7 +45,7 @@ useEffect(() => {
 }, [roomId])
 ```
 
-- `roomId`를 바꾸는 것은 다른 방에 연결하고 싶다는 의미
+- `roomId`를 바꾸는 것은 다른 방에 연결하고 싶다는 의미<br/>
   ⇒ `roomId`라는 **반응형 값을 따라가고**, 그 값이 바뀌면 로직이 실행되어야 함
 
 ---
@@ -93,7 +93,7 @@ function ChatRoom({ roomId, theme }) {
 import { useEffect, useEffectEvent } from 'react';
 
 function ChatRoom({ roomId, theme }) {
-	// Effect Event 선언
+  // Effect Event 선언
   const onConnected = useEffectEvent(() => {
     showNotification('연결됨!', theme);
   });
@@ -187,6 +187,7 @@ useEffect(() => {
 - 다른 `url`로 페이지를 방문하는 것이 사용자의 관점에서 **별도의 이벤트임을 명시**적으로 표현할 수 있다
 - 실수로 **의존성 배열에서 `url`을 빼먹는 실수를 방지**할 수 있다.
 - `useEffect` 내부 로직이 비동기인 경우에는 꼭 파라미터로 넘겨줘야 한다!<br/>
+
   [❌] `useEffect`에서 `url`을 넘겨주지 않고 `onVisit` 내부에서 `url`을 읽게 되면 `useEffect`가 실행되는 시점이 아닌 5초 후의 최신`url`값을 읽게 된다.
 
   ```jsx
@@ -202,8 +203,6 @@ useEffect(() => {
   ```
 
   [✅] `visitedUrl`은 최초에 이 `Effect`를 실행하게 만든 `url`에 해당한다.
-
-  - ~~setTImeout으로 5초 뒤에 실행하면 5초뒤에 url값이 인자로 넘어가는 것이 아닌가? useEffect가 실행될 시점의 값 복사 -> useEffectEvent만의 특징? ~~
 
   ```jsx
   const onVisit = useEffectEvent((visitedUrl) => {
